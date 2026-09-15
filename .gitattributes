@@ -1,0 +1,2 @@
+# Scripts rodam no container Linux — CRLF quebra o bash do init do Mongo.
+*.sh text eol=lf

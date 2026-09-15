@@ -1,0 +1,36 @@
+# assinavip.battomic.com — Assina VIP (Next.js standalone + PostgreSQL).
+# Buildado do repo pelo Dokploy (provider GitHub, branch main).
+# Banco no compose separado docker-compose.db.yml (host assina-postgres na rede net-assina-data).
+
+services:
+  assina-vip:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        # NEXT_PUBLIC_* são embutidas no bundle em BUILD time — precisam vir como build arg.
+        NEXT_PUBLIC_APP_URL: ${NEXT_PUBLIC_APP_URL}
+    restart: unless-stopped
+    # O Dokploy grava a aba Environment num .env ao lado deste arquivo; carregar o
+    # arquivo direto evita a interpolação virar string vazia em silêncio.
+    env_file:
+      - path: .env
+        required: false
+    networks:
+      - net-assina-data
+      - dokploy-network
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=dokploy-network
+      - traefik.http.routers.assina-vip.rule=Host(`assinavip.battomic.com`)
+      - traefik.http.routers.assina-vip.entrypoints=websecure
+      - traefik.http.routers.assina-vip.tls=true
+      - traefik.http.routers.assina-vip.tls.certresolver=letsencrypt
+      - traefik.http.routers.assina-vip.service=assina-vip
+      - traefik.http.services.assina-vip.loadbalancer.server.port=3000
+
+networks:
+  net-assina-data:
+    external: true
+  dokploy-network:
+    external: true

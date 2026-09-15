@@ -1,0 +1,31 @@
+# assina-postgres — banco do Assina VIP (PostgreSQL 16). Compose separado do app (projeto Dokploy assina_vip).
+# Sem porta exposta e sem egress: só na net-assina-data (overlay --internal, criar 1× via SSH):
+#   docker network create --driver overlay --attachable --internal net-assina-data
+
+services:
+  assina-postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${PG_SUPER_USER}
+      POSTGRES_PASSWORD: ${PG_SUPER_PASSWORD}
+      POSTGRES_DB: postgres
+      APP_DB: assina_vip
+      APP_USER: ${PG_APP_USER}
+      APP_PASSWORD: ${PG_APP_PASSWORD}
+    volumes:
+      - vol-assina-postgres:/var/lib/postgresql/data
+      # Só roda no primeiro boot (volume vazio): cria o usuário do app como dono do database assina_vip.
+      - ./init/postgres-init.sh:/docker-entrypoint-initdb.d/10-init.sh:ro
+    networks: [net-assina-data]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  vol-assina-postgres:
+
+networks:
+  net-assina-data: { external: true }
