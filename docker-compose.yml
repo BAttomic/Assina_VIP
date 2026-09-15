@@ -9,7 +9,7 @@ services:
       dockerfile: Dockerfile
       args:
         # NEXT_PUBLIC_* são embutidas no bundle em BUILD time — precisam vir como build arg.
-        NEXT_PUBLIC_APP_URL: ${NEXT_PUBLIC_APP_URL}
+        NEXT_PUBLIC_APP_URL: ${NEXT_PUBLIC_APP_URL:?defina NEXT_PUBLIC_APP_URL no Environment}
     restart: unless-stopped
     # O Dokploy grava a aba Environment num .env ao lado deste arquivo; carregar o
     # arquivo direto evita a interpolação virar string vazia em silêncio.
