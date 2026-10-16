@@ -12,3 +12,6 @@ Dockerfile
 .dockerignore
 docker-compose*.yml
 rascunhos_anotacoes
+
+# Documentação não vai para a imagem
+docs

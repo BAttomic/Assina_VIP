@@ -1,0 +1,13 @@
+/*
+ * Ponto único de entrada do CSS (importado em src/app/layout.tsx).
+ * A ordem importa: tokens e base primeiro, depois peças compartilhadas, depois páginas.
+ * Arquivo novo de estilo entra aqui, nunca importado direto de um componente.
+ */
+@import "./tokens.css";
+@import "./base.css";
+@import "./layout.css";
+@import "./product-card.css";
+@import "./home.css";
+@import "./product-page.css";
+@import "./cart.css";
+@import "./checkout.css";

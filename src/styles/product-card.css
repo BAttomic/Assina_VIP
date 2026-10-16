@@ -1,0 +1,24 @@
+/* Grade e card de produto. Compartilhado entre Home e página de produto. */
+.product-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+.product-card { position: relative; background: #f6f6f6; min-width: 0; border-radius: 6px; padding: 13px 12px 10px; text-align: center; }
+.product-image-wrap { position: relative; height: 165px; margin-bottom: 8px; }
+.product-image { object-fit: contain; }
+.product-info { display: flex; flex-direction: column; min-height: 108px; }
+.product-name, .product-duration { margin: 0; font-size: 9px; line-height: 1.35; }
+.product-duration { min-height: 24px; }
+.product-price { font-size: 15px; margin: 5px 0 12px; }
+.buy-button { width: 100%; height: 31px; border: 0; border-radius: 4px; background: #050505; color: #fff; font-size: 9px; margin-top: auto; transition: opacity .2s ease, transform .2s ease; }
+.buy-button:hover { opacity: .86; transform: translateY(-1px); }
+.wishlist { position: absolute; right: 10px; top: 10px; z-index: 2; border: 0; background: transparent; padding: 0; color: #888; }
+.product-card-link { display: block; color: inherit; text-decoration: none; }
+.product-card-link .product-card { height: 100%; }
+
+@media (max-width: 900px) {
+  .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 560px) {
+  .product-image-wrap { height: 125px; }
+  .product-card { padding: 9px 8px 8px; }
+  .product-price { font-size: 14px; }
+}
