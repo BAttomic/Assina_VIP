@@ -10,8 +10,8 @@ export default function Header() {
         </Link>
 
         <div className="search-box">
-          <Search size={14} strokeWidth={1.7} />
-          <input aria-label="Pesquisar" placeholder="Search" />
+          <Search size={22} strokeWidth={1.5} aria-hidden="true" />
+          <input type="search" aria-label="Pesquisar" placeholder="Search" />
         </div>
 
         <nav className="main-nav" aria-label="Navegação principal">
@@ -22,8 +22,8 @@ export default function Header() {
         </nav>
 
         <div className="header-actions">
-          <Link href="/carrinho" aria-label="Carrinho"><ShoppingCart size={17} strokeWidth={1.7} /></Link>
-          <button aria-label="Conta"><UserRound size={17} strokeWidth={1.7} /></button>
+          <Link href="/carrinho" aria-label="Carrinho"><ShoppingCart size={26} strokeWidth={1.5} /></Link>
+          <button type="button" aria-label="Conta"><UserRound size={26} strokeWidth={1.5} /></button>
         </div>
       </div>
     </header>

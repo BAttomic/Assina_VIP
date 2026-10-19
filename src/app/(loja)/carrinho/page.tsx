@@ -18,20 +18,20 @@ export default function CartPage() {
   return (
     <main className="cart-page">
       <div className="cart-shell">
-        <div className="cart-title">
-          <ShoppingCart size={25} strokeWidth={1.5} />
-          <h1>Carrinho</h1>
-        </div>
-
         <div className="cart-layout">
           <section className="cart-items" aria-label="Itens do carrinho">
+            <div className="cart-title">
+              <ShoppingCart size={26} strokeWidth={1.5} aria-hidden="true" />
+              <h1>Carrinho</h1>
+            </div>
+
             <article className="cart-item">
               <div className="cart-product-image">
                 <Image
                   src="/assets/netflix.jpg"
                   alt="Netflix Premium 4K Ultra HD"
                   fill
-                  sizes="86px"
+                  sizes="90px"
                 />
               </div>
 
@@ -42,28 +42,28 @@ export default function CartPage() {
 
               <div className="quantity-control" aria-label="Quantidade">
                 <button
+                  type="button"
                   aria-label="Diminuir quantidade"
                   onClick={() => setQuantity((value) => Math.max(1, value - 1))}
                 >
-                  <Minus size={12} strokeWidth={1.7} />
+                  <Minus size={16} strokeWidth={1.6} />
                 </button>
-                <span>{quantity}</span>
+                <span aria-live="polite">{quantity}</span>
                 <button
+                  type="button"
                   aria-label="Aumentar quantidade"
                   onClick={() => setQuantity((value) => value + 1)}
                 >
-                  <Plus size={12} strokeWidth={1.7} />
+                  <Plus size={16} strokeWidth={1.6} />
                 </button>
               </div>
 
               <strong className="cart-item-price">{formatPriceCompact(total)}</strong>
 
-              <button className="remove-item" aria-label="Remover produto">
-                <X size={18} strokeWidth={1.4} />
+              <button type="button" className="remove-item" aria-label="Remover produto">
+                <X size={22} strokeWidth={1.4} />
               </button>
             </article>
-
-            <div className="cart-divider" />
           </section>
 
           <aside className="order-summary">

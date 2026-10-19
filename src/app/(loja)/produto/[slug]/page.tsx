@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ChevronDown, ChevronRight, ShoppingBag } from "lucide-react";
+import { ChevronDown, ChevronRight, Store } from "lucide-react";
 import ProductCard from "@/components/product/ProductCard";
 import { productDetail as product, subscriptionProducts } from "@/data/products";
 import { formatPriceCompact } from "@/lib/format";
@@ -13,11 +13,11 @@ export default function ProductDetailsPage() {
 
   return (
     <main className="product-page">
-      <div className="breadcrumb-wrap">
+      <nav className="breadcrumb-wrap" aria-label="Você está em">
         <Link href="/">Home</Link>
-        <ChevronRight size={13} strokeWidth={1.4} />
-        <span>{product.shortName}</span>
-      </div>
+        <ChevronRight size={20} strokeWidth={1.5} aria-hidden="true" />
+        <span aria-current="page">{product.shortName}</span>
+      </nav>
 
       <section className="product-hero">
         <div className="product-main-image">
@@ -44,17 +44,16 @@ export default function ProductDetailsPage() {
 
           <div className="product-actions">
             <Link href="/carrinho" className="add-cart-button">
-              <ShoppingBag size={15} strokeWidth={1.5} />
               Adicionar ao Carrinho
             </Link>
             <Link href="/checkout" className="buy-now-button">Comprar</Link>
           </div>
 
           <div className="delivery-status">
-            <div className="delivery-icon"><ShoppingBag size={17} strokeWidth={1.4} /></div>
+            <div className="delivery-icon" aria-hidden="true"><Store size={24} strokeWidth={1.4} /></div>
             <div>
-              <strong>Em Estoque</strong>
-              <span>Hoje</span>
+              <span>Em Estoque</span>
+              <strong>Hoje</strong>
             </div>
           </div>
         </div>
@@ -82,9 +81,9 @@ export default function ProductDetailsPage() {
             ))}
           </div>
 
-          <button className="see-more-button">
+          <button type="button" className="see-more-button">
             Ver Mais
-            <ChevronDown size={14} strokeWidth={1.4} />
+            <ChevronDown size={20} strokeWidth={1.5} aria-hidden="true" />
           </button>
         </div>
       </section>

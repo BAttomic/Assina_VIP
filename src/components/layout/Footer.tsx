@@ -7,11 +7,11 @@ export default function Footer() {
         <div className="footer-brand">
           <h3>cyber</h3>
           <p>We are a residential interior design firm located in Portland. Our boutique-studio offers more than.</p>
-          <div className="socials">
-            <Twitter size={14} />
-            <Facebook size={14} />
-            <Music2 size={14} />
-            <Instagram size={14} />
+          <div className="socials" aria-hidden="true">
+            <Twitter size={16} />
+            <Facebook size={16} />
+            <Music2 size={16} />
+            <Instagram size={16} />
           </div>
         </div>
         <div>

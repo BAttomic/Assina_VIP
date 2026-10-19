@@ -13,15 +13,15 @@ type Props = {
 export default function ProductCard({ product, wishlist = false }: Props) {
   const content = (
     <article className="product-card">
-      {wishlist && <button className="wishlist" aria-label={`Adicionar ${product.name} aos favoritos`}><Heart size={16} strokeWidth={1.2} /></button>}
+      {wishlist && <button type="button" className="wishlist" aria-label={`Adicionar ${product.name} aos favoritos`}><Heart size={24} strokeWidth={1.3} /></button>}
       <div className="product-image-wrap">
-        <Image src={product.image} alt={product.name} fill sizes="(max-width: 700px) 42vw, 220px" className="product-image" />
+        <Image src={product.image} alt={product.name} fill sizes="(max-width: 560px) 112px, 160px" className="product-image" />
       </div>
       <div className="product-info">
         <p className="product-name">{product.name} |</p>
         <p className="product-duration">{product.duration}</p>
         <strong className="product-price">{formatPrice(product.price)}</strong>
-        <button className="buy-button">Comprar Agora</button>
+        <button type="button" className="buy-button">Comprar Agora</button>
       </div>
     </article>
   );

@@ -1,14 +1,41 @@
-/* Tokens globais (variáveis CSS). Cor ou medida nova reaproveitável entra aqui primeiro. */
+/* Tokens globais (variáveis CSS). Cor ou medida nova reaproveitável entra aqui primeiro. Valores do Figma. */
 :root {
+  /* Cores */
   --bg: #fff;
-  --surface: #f5f5f5;
-  --surface-2: #f1f1f1;
-  --text: #090909;
-  --muted: #7c7c7c;
-  --border: #e7e7e7;
-  --max: 1110px;
+  --text: #000;
+  --text-strong: #111;
+  --ink: #000;                /* botões escuros e footer */
+  --section: #fafafa;         /* fundo de seções (categorias, detalhes do produto) */
+  --surface: #f6f6f6;         /* card de produto, item do resumo */
+  --surface-2: #f5f5f5;       /* campo de busca */
+  --surface-3: #ededed;       /* card de categoria */
+  --muted: #8b8b8b;           /* abas inativas */
+  --muted-2: #717171;         /* texto secundário */
+  --subtle: #9f9f9f;          /* descrições */
+  --placeholder: #979797;
+  --border: #ebebeb;          /* contorno de cartões */
+  --border-field: #cecece;    /* contorno de campos */
+  --divider: #cdcdcd;         /* linhas de listas */
+  --accent: #645cfa;          /* links e foco */
+  --success: #22c55e;
+
+  /* Forma */
+  --radius-sm: 6px;           /* botões grandes */
+  --radius-md: 8px;           /* botões dos cards, imagens */
+  --radius-field: 7px;
+  --radius-card: 10px;
+
+  /* Layout */
+  --max: 1120px;
+  --gutter: 48px;             /* soma das margens laterais do contêiner */
+  --section-y: 80px;
+  --ease: .2s ease;
 }
 
 @media (max-width: 900px) {
-  :root { --max: calc(100% - 32px); }
+  :root { --gutter: 32px; --section-y: 56px; }
+}
+
+@media (max-width: 560px) {
+  :root { --gutter: 32px; --section-y: 40px; }
 }

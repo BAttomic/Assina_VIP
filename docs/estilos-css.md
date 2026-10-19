@@ -31,54 +31,48 @@ Todo o CSS fica em `src/styles/`. O layout raiz importa **um único arquivo**, `
 - **Estado** com classe modificadora curta aplicada junto: `.active` (aba selecionada, link de navegação atual, dot do Hero), `.left` e `.right` (setas).
 - Utilitário só quando muito pontual: `.span-2` no grid de campos do cartão.
 - Seletor de elemento só **dentro** de um bloco (`.order-summary input`). Seletor de elemento solto fica só em `base.css`.
-- Sem `!important`. A única exceção herdada é `.how-title` na página de produto.
+- Sem `!important`.
 - Estilo inline (`style={{…}}`) só no fallback do cartão 3D sem WebGL.
 
 ## Tokens
 
-Definidos em `tokens.css`:
+Definidos em `tokens.css`, com os valores do Figma. Use a variável, não a cor literal.
 
 | Variável | Valor | Uso |
 |---|---|---|
-| `--bg` | `#fff` | Fundo da página |
-| `--text` | `#090909` | Cor de texto padrão |
-| `--surface` | `#f5f5f5` | Superfícies cinza (item do resumo no checkout, ícone do Pix) |
-| `--surface-2` | `#f1f1f1` | Reservado, ainda sem uso |
-| `--muted` | `#7c7c7c` | Reservado, ainda sem uso |
-| `--border` | `#e7e7e7` | Reservado, ainda sem uso |
-| `--max` | `1110px`, ou `calc(100% - 32px)` abaixo de 900px | Largura máxima do conteúdo |
+| `--bg` / `--text` | `#fff` / `#000` | Fundo e texto padrão |
+| `--ink` | `#000` | Botões escuros e footer |
+| `--section` | `#fafafa` | Fundo de seções (categorias, detalhes do produto) |
+| `--surface` | `#f6f6f6` | Card de produto, item do resumo, ícone de entrega |
+| `--surface-2` / `--surface-3` | `#f5f5f5` / `#ededed` | Campo de busca / card de categoria |
+| `--muted` / `--muted-2` | `#8b8b8b` / `#717171` | Abas inativas / texto secundário |
+| `--subtle` / `--placeholder` | `#9f9f9f` / `#979797` | Descrições / placeholder |
+| `--border` / `--border-field` / `--divider` | `#ebebeb` / `#cecece` / `#cdcdcd` | Contorno de cartões / de campos / linhas de lista |
+| `--accent` | `#645cfa` | Links e anel de foco |
+| `--success` | `#22c55e` | Estoque |
+| `--radius-sm` / `--radius-md` / `--radius-field` / `--radius-card` | 6 / 8 / 7 / 10px | Botões grandes / botões de card e imagens / campos / cartões |
+| `--max` | `1120px` | Largura máxima do conteúdo |
+| `--gutter` | `48px`, `32px` abaixo de 900px | Soma das margens laterais do contêiner |
+| `--section-y` | `80px`, `56px` (≤900px), `40px` (≤560px) | Respiro vertical das seções |
+| `--ease` | `.2s ease` | Transições |
 
-A maior parte das cores ainda está escrita literalmente nos arquivos, como veio do Figma. **Regra para código novo:** cor ou medida que se repete vira variável em `tokens.css` antes de ser usada.
-
-## Paleta de fato
-
-| Papel | Cores usadas |
-|---|---|
-| Preto de ação (botões, footer) | `#050505` |
-| Texto forte | `#111`, `#0b0b0b`, `#090909` |
-| Texto secundário | `#999`, `#888`, `#7c7c7c`, `#555` |
-| Placeholder e texto apagado | `#a7a7a7`, `#a5a5a5`, `#9a9a9a`, `#929292` |
-| Superfícies | `#f7f7f7`, `#f6f6f6`, `#f5f5f5`, `#f4f4f4`, `#f1f1f1`, `#f0f0f0` |
-| Bordas | `#e5e5e5`, `#e4e4e4`, `#e2e2e2`, `#dcdcdc`, `#d9d9d9`, `#d3d3d3` |
-| Acento (links, dot ativo, anel de foco) | `#5e65f5` |
-| Sucesso (estoque) | `#14b866` |
+**Regra para código novo:** cor ou medida que se repete vira variável em `tokens.css` antes de ser usada.
 
 A interface é **monocromática** (preto, branco e cinzas), com um único acento azul-violeta. Mantenha assim.
 
 ## Tipografia
 
-- Fonte: `Arial, Helvetica, sans-serif`. Não há fonte web carregada.
-- Corpo: 13px.
-- Escala do Figma, pequena: 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 20 e 21px. Títulos de página ficam entre 16 e 21px.
-- Pesos: 400, 500 (títulos de seção), 600 e 700 (marca, título do produto).
-- Títulos grandes usam `letter-spacing` levemente negativo (`-.01em` a `-.025em`).
+- Fonte: **Inter**, carregada com `next/font/google` em `src/app/layout.tsx` e exposta como `--font-inter`. `Arial` fica só como fallback.
+- Corpo: 14px, `line-height` 1.5.
+- Escala do Figma: 14 (texto, botões de card), 16 (nomes de produto, navegação, botões grandes), 18 (abas da vitrine, marca), 20 (subtítulos), 24 (títulos de seção e preço do card), 32 (preço do produto) e 72px (banner promocional).
+- Pesos: 400, 500 (padrão para títulos, navegação e botões), 600 (preço do card, footer) e 700 (título do produto, resumos).
 
 ## Layout e espaçamento
 
-- Contêiner padrão: `width: min(calc(100% - 48px), var(--max)); margin: 0 auto;`
-- No celular (até 560/600px), o contêiner vira `calc(100% - 24px)`.
-- Hero e banner promocional vão até 1120px.
-- Grades com `display: grid` e `minmax(0, 1fr)`. A vitrine tem 4 colunas, e 2 abaixo de 900px.
+- Contêiner padrão: `width: min(calc(100% - var(--gutter)), var(--max)); margin: 0 auto;`
+- Os banners do Hero respeitam o contêiner padrão (`--max`), alinhados com as demais seções: dois lado a lado no desktop, um só abaixo de 900px. Só o banner promocional ocupa a largura toda da tela.
+- Grades com `display: grid` e `minmax(0, 1fr)`. A vitrine tem 4 colunas, 3 abaixo de 1100px e 2 abaixo de 900px. Espaço entre cards: 16px.
+- Card de produto: imagem de 160px, nome 16px, preço 24px semibold, botão de largura total com 48px de altura.
 
 ## Breakpoints
 
@@ -86,23 +80,25 @@ Desktop-first, sempre com `max-width`. As media queries ficam **no fim** do arqu
 
 | Breakpoint | Onde |
 |---|---|
-| 900px | Header, Home, grade de produtos, checkout |
-| 850px | Carrinho |
-| 800px | Página de produto |
+| 1200px | Header (navegação mais compacta) |
+| 1100px | Grade de produtos (3 colunas) |
+| 1000px | Checkout |
+| 900px | Header, Footer, Home, grade de produtos, página de produto, carrinho, checkout |
 | 600px | Carrinho |
-| 560px | Header, Home, Footer, página de produto, checkout |
+| 560px | Header, Footer, Home, grade de produtos, página de produto, checkout |
 
 Para área nova, use 900px e 560px.
 
 ## Forma e interação
 
-- Raio: 4 a 5px em botões e inputs, 6 a 9px em cards, 10px no Hero e no palco do cartão, 50% em ícones redondos.
-- Sombra quase não existe. A exceção são as setas do Hero (`0 1px 4px rgba(0,0,0,.12)`).
-- Transição: `.2s ease`. O hover de botão escuro reduz a opacidade para `.86` ou `.88`. Cards sobem 1 a 2px (`translateY`).
+- Raio: 6px em botões grandes, 7px em campos, 8px em botões de card e imagens, 9px no card de produto, 10px em cartões de resumo, 15px no card de categoria, 24px nos banners do Hero, 50% em ícones redondos.
+- Sombra quase não existe: setas do Hero e o hover do card de produto (`0 6px 20px rgba(0,0,0,.06)`).
+- Transição: `var(--ease)`. Botão escuro no hover reduz a opacidade para `.86`. Botão claro ganha fundo `--surface`. Cards sobem 2px (`translateY`).
+- Botão só com ícone tem área de toque de 32px no desktop e 40px no celular.
 - Botão desabilitado: `opacity: .35; cursor: not-allowed`.
 - Foco:
-  - Botões e links: `outline: 2px solid` em `#111` ou `#5e65f5`, com `outline-offset`.
-  - Inputs: `border-color: #111` com `box-shadow: 0 0 0 3px rgba(0,0,0,.08)`.
+  - Botões e links: `outline: 2px solid var(--accent)` com `outline-offset: 2px`, definido em `base.css`.
+  - Inputs: `border-color: var(--text)` com `box-shadow: 0 0 0 3px rgba(0,0,0,.08)`.
   - Sempre via `:focus-visible`, nunca `:focus`.
 - Toda animação contínua precisa de uma regra `@media (prefers-reduced-motion: reduce)` que a desligue.
 

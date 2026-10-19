@@ -46,7 +46,7 @@ export default function CheckoutPage() {
       <div className="payment-shell">
         <div className="payment-title">
           <span className="payment-title-icon" aria-hidden="true">
-            <Lock size={11} strokeWidth={2} />
+            <Lock size={12} strokeWidth={2} />
           </span>
           <h1>Pagamento</h1>
         </div>

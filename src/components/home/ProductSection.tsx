@@ -5,9 +5,9 @@ export default function ProductSection() {
   return (
     <section className="products-area" id="produtos">
       <div className="product-tabs">
-        <button className="active">Assinaturas</button>
-        <button>Assinaturas Premium</button>
-        <button>Mais Vendidos</button>
+        <button type="button" className="active">Assinaturas</button>
+        <button type="button">Assinaturas Premium</button>
+        <button type="button">Mais Vendidos</button>
       </div>
 
       <div className="product-grid">
