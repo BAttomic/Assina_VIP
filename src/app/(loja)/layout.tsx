@@ -1,5 +1,6 @@
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import ScrollReveal from "@/components/layout/ScrollReveal";
 
 /**
  * Casca da loja: toda página dentro de (loja) ganha Header e Footer.
@@ -12,6 +13,7 @@ export default function LojaLayout({ children }: LayoutProps<"/">) {
       <Header />
       {children}
       <Footer />
+      <ScrollReveal />
     </>
   );
 }

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { Lock } from "lucide-react";
+import { Lock, ShieldCheck } from "lucide-react";
 import CreditCard3D from "@/components/checkout/CreditCard3D";
 import PaymentSummary from "@/components/checkout/PaymentSummary";
 import AlternativePayment from "@/components/checkout/AlternativePayment";
@@ -158,6 +158,11 @@ export default function CheckoutPage() {
                 Pagar
               </button>
             </div>
+
+            <p className="secure-note">
+              <ShieldCheck size={16} strokeWidth={1.8} aria-hidden="true" />
+              Conexão segura. Os dados do cartão não ficam salvos.
+            </p>
           </section>
         </div>
       </div>

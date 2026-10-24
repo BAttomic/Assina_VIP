@@ -1,17 +1,18 @@
 /**
  * Formatação de preço. Toda exibição de preço passa por aqui, nunca formatar inline.
- *
- * ATENÇÃO: hoje existem DOIS formatos porque o front veio assim do Figma, e eles
- * divergem entre si (ver docs/pendencias.md). Ambos usam "$" e nenhum é BRL de fato.
- * Ao unificar, mude só este arquivo.
+ * Formato único da loja: real brasileiro, "R$ 13,99".
  */
 
-/** Formato dos cards da vitrine: 25.35 -> "$25,35", 1799 -> "$1.799". */
+const brl = new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" });
+
+/** 13.99 -> "R$ 13,99"; 1799 -> "R$ 1.799,00". */
 export function formatPrice(price: number) {
-  return `$${price.toLocaleString("pt-BR", { minimumFractionDigits: 0, maximumFractionDigits: 2 })}`;
+  // O Intl usa espaço não separável depois de "R$"; ele mantém símbolo e valor na mesma linha.
+  return brl.format(price);
 }
 
-/** Formato do carrinho e da página de produto: 13.99 -> "$1399" (sem separador decimal). */
-export function formatPriceCompact(price: number) {
-  return `$${price.toFixed(2).replace(".", "")}`;
+/** Desconto inteiro de um preço antigo para o atual: (14.99, 13.99) -> 7. Zero quando não há desconto. */
+export function discountPercent(oldPrice: number, price: number) {
+  if (!(oldPrice > price) || oldPrice <= 0) return 0;
+  return Math.round((1 - price / oldPrice) * 100);
 }

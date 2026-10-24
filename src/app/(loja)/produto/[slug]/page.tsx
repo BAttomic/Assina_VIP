@@ -2,14 +2,17 @@ import Image from "next/image";
 import Link from "next/link";
 import { ChevronDown, ChevronRight, Store } from "lucide-react";
 import ProductCard from "@/components/product/ProductCard";
+import PurchaseBenefits from "@/components/product/PurchaseBenefits";
+import PurchaseFaq from "@/components/product/PurchaseFaq";
 import { productDetail as product, subscriptionProducts } from "@/data/products";
-import { formatPriceCompact } from "@/lib/format";
+import { discountPercent, formatPrice } from "@/lib/format";
 
 // O slug ainda não é lido: toda URL /produto/* mostra o mock de productDetail.
 // Quando houver API, buscar pelo slug com `const { slug } = await props.params`
 // (params é Promise no Next 16) e tipar com PageProps<"/produto/[slug]">.
 export default function ProductDetailsPage() {
   const similarProducts = subscriptionProducts.slice(0, 4);
+  const discount = discountPercent(product.oldPrice, product.price);
 
   return (
     <main className="product-page">
@@ -36,9 +39,11 @@ export default function ProductDetailsPage() {
           <h1>{product.name}</h1>
 
           <div className="price-row">
-            <strong>{formatPriceCompact(product.price)}</strong>
-            <del>{formatPriceCompact(product.oldPrice)}</del>
+            <strong>{formatPrice(product.price)}</strong>
+            <del>{formatPrice(product.oldPrice)}</del>
+            {discount > 0 && <span className="discount-badge">-{discount}%</span>}
           </div>
+          <p className="price-note">Pague com Pix ou cartão de crédito</p>
 
           <p className="product-description">{product.description}</p>
 
@@ -56,6 +61,8 @@ export default function ProductDetailsPage() {
               <strong>Hoje</strong>
             </div>
           </div>
+
+          <PurchaseBenefits variant="list" />
         </div>
       </section>
 
@@ -80,6 +87,9 @@ export default function ProductDetailsPage() {
               </article>
             ))}
           </div>
+
+          <h3 className="how-title">Perguntas frequentes</h3>
+          <PurchaseFaq />
 
           <button type="button" className="see-more-button">
             Ver Mais

@@ -1,4 +1,8 @@
 import Image from "next/image";
+import { formatPrice } from "@/lib/format";
+
+// Mock: mesmo valor unitário do carrinho. Sai quando o pedido vier do back-end.
+const ORDER_TOTAL = 13.99;
 
 /** Coluna esquerda do checkout: item do pedido, contato e total. Valores ainda fixos (mock). */
 export default function PaymentSummary() {
@@ -11,7 +15,7 @@ export default function PaymentSummary() {
           <Image src="/assets/netflix.jpg" alt="Netflix" fill sizes="40px" />
         </div>
         <h3>Netflix Premium 4k Ultra HD | 30 Dias</h3>
-        <strong>$1399</strong>
+        <strong>{formatPrice(ORDER_TOTAL)}</strong>
       </div>
 
       <p className="contact-label" id="contact-label">
@@ -24,7 +28,7 @@ export default function PaymentSummary() {
 
       <div className="payment-total">
         <span>Total do Pedido</span>
-        <span>$1399</span>
+        <span>{formatPrice(ORDER_TOTAL)}</span>
       </div>
     </aside>
   );

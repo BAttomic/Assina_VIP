@@ -4,6 +4,8 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 export default function Hero() {
   return (
     <section className="hero" id="home">
+      {/* Título da página para leitores de tela e buscadores. O Figma não tem título visível na Home. */}
+      <h1 className="hero-title">AssinaVip: assinaturas digitais, jogos e produtos com entrega automática</h1>
       <div className="hero-top">
         <button type="button" className="hero-arrow left" aria-label="Banner anterior"><ChevronLeft size={18} strokeWidth={2} /></button>
         <div className="hero-card hero-card-large">

@@ -1,5 +1,9 @@
 /* Casca da loja: Header e Footer (usados em src/app/(loja)/layout.tsx). */
 
+/* Faixa de aviso acima do header */
+.announcement-bar { margin: 0; min-height: 36px; padding: 8px 16px; display: flex; align-items: center; justify-content: center; gap: 8px; background: var(--ink); color: #fff; font-size: 13px; font-weight: 500; line-height: 18px; text-align: center; }
+.announcement-bar svg { flex: 0 0 auto; }
+
 /* Header */
 .site-header { position: relative; z-index: 10; height: 88px; background: var(--bg); border-bottom: 1px solid #b5b5b5; display: flex; align-items: center; }
 .header-inner { width: min(calc(100% - var(--gutter)), var(--max)); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 32px; }
@@ -7,10 +11,10 @@
 .search-box { flex: 0 1 372px; min-width: 0; height: 56px; background: var(--surface-2); border-radius: var(--radius-md); display: flex; align-items: center; gap: 8px; padding: 0 16px; color: #8a8a8a; border: 1px solid transparent; transition: border-color var(--ease), background var(--ease); }
 .search-box:focus-within { border-color: #d0d0d0; background: #f0f0f0; }
 .search-box input { flex: 1; min-width: 0; border: 0; outline: 0; background: transparent; font-size: 14px; font-weight: 500; color: var(--text); }
-.search-box input::placeholder { color: #656565; opacity: .5; }
+.search-box input::placeholder { color: var(--muted); opacity: 1; }
 .search-box input::-webkit-search-cancel-button { cursor: pointer; }
 .main-nav { display: flex; gap: 52px; font-size: 16px; font-weight: 500; }
-.main-nav a { color: rgba(0, 0, 0, .3); white-space: nowrap; transition: color var(--ease); }
+.main-nav a { color: var(--muted); white-space: nowrap; transition: color var(--ease); }
 .main-nav a:hover { color: rgba(0, 0, 0, .7); }
 .main-nav a.active { color: var(--text); }
 .header-actions { display: flex; align-items: center; gap: 24px; }
@@ -27,6 +31,17 @@
 .footer-grid a { display: block; width: fit-content; color: #cfcfcf; font-size: 14px; line-height: 32px; margin-top: 8px; transition: color var(--ease); }
 .footer-grid a:hover { color: #fff; }
 .socials { display: flex; gap: 36px; margin-top: auto; padding-top: 113px; color: #fff; }
+
+/* Entrada ao rolar (components/layout/ScrollReveal.tsx). As classes só existem enquanto o script anima;
+   sem JavaScript ou com prefers-reduced-motion nada é ocultado. O "html" eleva a especificidade
+   para vencer as transições próprias dos blocos (ex.: .product-card). */
+html .reveal { opacity: 0; transform: translateY(24px); transition: none; }
+html .reveal.is-visible { opacity: 1; transform: none; transition: opacity .6s cubic-bezier(.2, .7, .2, 1), transform .6s cubic-bezier(.2, .7, .2, 1); }
+
+/* Retorno ao pressionar: o controle "afunda" levemente */
+.buy-button:active, .payment-button:active, .add-cart-button:active, .buy-now-button:active,
+.back-payment:active, .pay-button:not(:disabled):active, .see-more-button:active,
+.promo-overlay button:active, .category-card:active, .wishlist:active { transform: scale(.97); }
 
 @media (max-width: 1200px) {
   .main-nav { gap: 28px; font-size: 15px; }

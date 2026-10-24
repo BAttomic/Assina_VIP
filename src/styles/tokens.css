@@ -9,15 +9,16 @@
   --surface: #f6f6f6;         /* card de produto, item do resumo */
   --surface-2: #f5f5f5;       /* campo de busca */
   --surface-3: #ededed;       /* card de categoria */
-  --muted: #8b8b8b;           /* abas inativas */
-  --muted-2: #717171;         /* texto secundário */
+  /* Texto secundário: os tons do Figma (#8b8b8b, #9f9f9f, #a4a4a4) ficavam abaixo de 4,5:1 e foram escurecidos */
+  --muted: #6f6f6f;           /* abas e navegação inativas (5,0:1) */
+  --muted-2: #717171;         /* texto secundário (4,8:1) */
   --subtle: #9f9f9f;          /* descrições */
   --placeholder: #979797;
   --border: #ebebeb;          /* contorno de cartões */
   --border-field: #cecece;    /* contorno de campos */
   --divider: #cdcdcd;         /* linhas de listas */
   --accent: #645cfa;          /* links e foco */
-  --success: #22c55e;
+  --success: #15803d;         /* verde do Figma (#22c55e) escurecido: 5,0:1 em vez de 2,3:1 */
 
   /* Forma */
   --radius-sm: 6px;           /* botões grandes */

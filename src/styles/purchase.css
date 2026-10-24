@@ -1,0 +1,42 @@
+/* Elementos de compra: vantagens (components/product/PurchaseBenefits) e perguntas frequentes
+   (components/product/PurchaseFaq). Usados na Home, na página de produto e no checkout. */
+
+/* Vantagens da compra */
+.purchase-benefits { margin: 0; padding: 0; list-style: none; }
+.purchase-benefits li { display: flex; align-items: flex-start; gap: 12px; min-width: 0; }
+.purchase-benefits strong { display: block; color: var(--text); font-weight: 600; }
+.purchase-benefits li > span:last-child > span { display: block; color: var(--muted-2); }
+.purchase-benefit-icon { flex: 0 0 auto; display: grid; place-items: center; border-radius: 50%; color: var(--text); }
+
+/* Faixa da Home: logo abaixo dos banners, na largura do conteúdo */
+.purchase-benefits.strip { width: min(calc(100% - var(--gutter)), var(--max)); margin: 24px auto 0; padding: 20px 24px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; background: var(--surface); border-radius: 12px; }
+.purchase-benefits.strip .purchase-benefit-icon { width: 40px; height: 40px; background: #fff; }
+.purchase-benefits.strip strong { font-size: 15px; line-height: 22px; }
+.purchase-benefits.strip li > span:last-child > span { font-size: 13px; line-height: 19px; }
+
+/* Lista da página de produto: abaixo dos botões de compra */
+.purchase-benefits.list { margin-top: 24px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 24px; }
+.purchase-benefits.list .purchase-benefit-icon { width: 36px; height: 36px; background: var(--surface); }
+.purchase-benefits.list strong { font-size: 14px; line-height: 20px; }
+.purchase-benefits.list li > span:last-child > span { font-size: 13px; line-height: 18px; }
+
+/* Perguntas frequentes */
+.purchase-faq { display: flex; flex-direction: column; }
+.purchase-faq details { border-bottom: .5px solid var(--divider); }
+.purchase-faq summary { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 14px 0; font-size: 16px; line-height: 24px; cursor: pointer; list-style: none; }
+.purchase-faq summary::-webkit-details-marker { display: none; }
+.purchase-faq summary::after { content: "+"; flex: 0 0 auto; font-size: 22px; line-height: 1; color: var(--muted-2); transition: transform var(--ease); }
+.purchase-faq details[open] summary::after { transform: rotate(45deg); }
+.purchase-faq summary:hover { color: var(--muted-2); }
+.purchase-faq summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+.purchase-faq p { max-width: 620px; margin: 0 0 16px; color: var(--muted-2); font-size: 14px; line-height: 21px; }
+
+@media (max-width: 900px) {
+  .purchase-benefits.strip { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+}
+
+@media (max-width: 560px) {
+  .purchase-benefits.strip { grid-template-columns: 1fr; gap: 14px; padding: 16px; margin-top: 16px; }
+  .purchase-benefits.strip .purchase-benefit-icon { width: 36px; height: 36px; }
+  .purchase-benefits.list { grid-template-columns: 1fr; gap: 12px; }
+}

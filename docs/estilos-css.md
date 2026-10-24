@@ -12,6 +12,7 @@ Todo o CSS fica em `src/styles/`. O layout raiz importa **um único arquivo**, `
 | 2 | `base.css` | Reset mínimo e estilos de elemento (`body`, `button`, `a`). Nenhuma classe |
 | 3 | `layout.css` | Header e Footer |
 | 4 | `product-card.css` | Grade e card de produto, compartilhados entre Home e página de produto |
+| 4b | `purchase.css` | Vantagens da compra e perguntas frequentes (Home, produto, checkout) |
 | 5 | `home.css` | Hero, categorias, vitrine, banner promocional |
 | 6 | `product-page.css` | `/produto/[slug]` |
 | 7 | `cart.css` | `/carrinho` |
@@ -45,11 +46,11 @@ Definidos em `tokens.css`, com os valores do Figma. Use a variável, não a cor 
 | `--section` | `#fafafa` | Fundo de seções (categorias, detalhes do produto) |
 | `--surface` | `#f6f6f6` | Card de produto, item do resumo, ícone de entrega |
 | `--surface-2` / `--surface-3` | `#f5f5f5` / `#ededed` | Campo de busca / card de categoria |
-| `--muted` / `--muted-2` | `#8b8b8b` / `#717171` | Abas inativas / texto secundário |
+| `--muted` / `--muted-2` | `#6f6f6f` / `#717171` | Abas e navegação inativas, preço riscado / texto secundário (descrições, breadcrumb). Os cinzas do Figma (`#8b8b8b`, `#9f9f9f`, `#a4a4a4`) ficavam abaixo de 4,5:1 e foram escurecidos |
 | `--subtle` / `--placeholder` | `#9f9f9f` / `#979797` | Descrições / placeholder |
 | `--border` / `--border-field` / `--divider` | `#ebebeb` / `#cecece` / `#cdcdcd` | Contorno de cartões / de campos / linhas de lista |
 | `--accent` | `#645cfa` | Links e anel de foco |
-| `--success` | `#22c55e` | Estoque |
+| `--success` | `#15803d` | Estoque. O verde do Figma (`#22c55e`) tinha 2,3:1 de contraste |
 | `--radius-sm` / `--radius-md` / `--radius-field` / `--radius-card` | 6 / 8 / 7 / 10px | Botões grandes / botões de card e imagens / campos / cartões |
 | `--max` | `1120px` | Largura máxima do conteúdo |
 | `--gutter` | `48px`, `32px` abaixo de 900px | Soma das margens laterais do contêiner |
@@ -101,6 +102,17 @@ Para área nova, use 900px e 560px.
   - Inputs: `border-color: var(--text)` com `box-shadow: 0 0 0 3px rgba(0,0,0,.08)`.
   - Sempre via `:focus-visible`, nunca `:focus`.
 - Toda animação contínua precisa de uma regra `@media (prefers-reduced-motion: reduce)` que a desligue.
+- Contraste mínimo: 4,5:1 para texto comum e 3:1 para texto grande. Placeholder também conta.
+
+## Animação de entrada
+
+`components/layout/ScrollReveal.tsx`, montado em `(loja)/layout.tsx`, anima a entrada dos blocos ao rolar (sobe 24px e aparece, em 0,6s, escalonado em 70ms). A lista de seletores fica no próprio componente; para animar um bloco novo, acrescente o seletor lá. Regras:
+
+- Só `transform` e `opacity`. O CSS (`.reveal`, `.is-visible`) fica em `layout.css`.
+- O conteúdo só é ocultado depois que o script roda: sem JavaScript, tudo aparece.
+- O que já está na primeira tela não é animado.
+- Com `prefers-reduced-motion: reduce`, nada é animado. Atenção ao testar: se o Windows estiver com "efeitos de animação" desligados, o navegador reporta essa preferência e a animação não aparece.
+- Botões principais e cards "afundam" levemente ao serem pressionados (`transform: scale(.97)` em `:active`).
 
 ## Caminho futuro
 

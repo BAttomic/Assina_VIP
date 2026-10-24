@@ -1,7 +1,7 @@
 /* Página de produto: /produto/[slug] */
 .product-page { background: var(--bg); }
-.breadcrumb-wrap { width: min(calc(100% - var(--gutter)), var(--max)); margin: 0 auto; padding: 40px 0; display: flex; align-items: center; gap: 16px; color: #a4a4a4; font-size: 16px; font-weight: 500; line-height: 24px; }
-.breadcrumb-wrap a { color: #a4a4a4; transition: color var(--ease); }
+.breadcrumb-wrap { width: min(calc(100% - var(--gutter)), var(--max)); margin: 0 auto; padding: 40px 0; display: flex; align-items: center; gap: 16px; color: var(--muted-2); font-size: 16px; font-weight: 500; line-height: 24px; }
+.breadcrumb-wrap a { color: var(--muted-2); transition: color var(--ease); }
 .breadcrumb-wrap a:hover { color: var(--text); }
 .breadcrumb-wrap span { color: var(--text); }
 
@@ -11,10 +11,12 @@
 .product-summary { display: flex; flex-direction: column; min-width: 0; }
 .stock-badge { display: block; color: var(--success); font-size: 15px; font-weight: 700; line-height: 32px; }
 .product-summary h1 { max-width: 330px; margin: 12px 0 0; color: #171717; font-size: 24px; font-weight: 700; line-height: 32px; }
-.price-row { display: flex; align-items: baseline; gap: 16px; margin-top: 12px; }
+.price-row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 16px; margin-top: 12px; }
 .price-row strong { font-size: 32px; font-weight: 500; line-height: 48px; letter-spacing: .03em; }
-.price-row del { color: #a0a0a0; font-size: 24px; line-height: 32px; letter-spacing: .03em; }
-.product-description { min-height: 72px; margin: 16px 0 32px; color: var(--subtle); font-size: 14px; line-height: 21px; }
+.price-row del { color: var(--muted); font-size: 24px; line-height: 32px; letter-spacing: .03em; }
+.discount-badge { align-self: center; padding: 2px 10px; border-radius: 999px; background: #e7f6ec; color: var(--success); font-size: 14px; font-weight: 700; line-height: 22px; }
+.price-note { margin: 4px 0 0; color: var(--muted-2); font-size: 14px; line-height: 20px; }
+.product-description { min-height: 72px; margin: 16px 0 32px; color: var(--muted-2); font-size: 14px; line-height: 21px; }
 .product-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .add-cart-button, .buy-now-button { min-height: 56px; padding: 16px 24px; border-radius: var(--radius-sm); font-size: 16px; font-weight: 500; line-height: 24px; display: flex; align-items: center; justify-content: center; text-align: center; transition: opacity var(--ease), background var(--ease); }
 .add-cart-button { background: #fff; color: var(--text); border: 1px solid var(--ink); }
@@ -30,7 +32,7 @@
 .details-section { background: var(--section); padding: var(--section-y) 0; }
 .details-card { width: min(calc(100% - var(--gutter)), var(--max)); margin: 0 auto; background: #fff; border-radius: var(--radius-md); padding: 48px 40px; display: flex; flex-direction: column; }
 .details-card h2 { margin: 0; font-size: 24px; font-weight: 500; line-height: 32px; }
-.details-intro { margin: 32px 0; color: var(--subtle); font-size: 14px; line-height: 21px; }
+.details-intro { margin: 32px 0; color: var(--muted-2); font-size: 14px; line-height: 21px; }
 .details-card h3 { margin: 0 0 16px; font-size: 20px; font-weight: 500; line-height: 24px; }
 .product-specs { margin: 0; display: flex; flex-direction: column; gap: 24px; }
 .product-specs > div { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; padding-bottom: 8px; border-bottom: .5px solid var(--divider); line-height: 24px; }
@@ -40,7 +42,7 @@
 .steps { display: flex; flex-direction: column; gap: 24px; }
 .steps article { padding-bottom: 8px; border-bottom: .5px solid var(--divider); }
 .steps h4 { margin: 0; font-size: 16px; font-weight: 400; line-height: 24px; }
-.steps p { margin: 0; max-width: 620px; color: #7a7a7a; font-size: 14px; line-height: 21px; }
+.steps p { margin: 0; max-width: 620px; color: var(--muted-2); font-size: 14px; line-height: 21px; }
 .see-more-button { align-self: center; margin-top: 32px; padding: 12px 56px; border: 1px solid #545454; border-radius: var(--radius-md); background: #fff; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 14px; font-weight: 500; line-height: 24px; transition: background var(--ease); }
 .see-more-button:hover { background: var(--surface); }
 

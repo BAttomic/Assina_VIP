@@ -8,14 +8,16 @@ Levantadas na integração do front-end em 16/out/2026. Remova o item quando res
 |---|---|---|
 | Marca de terceiros no cartão 3D | `components/checkout/creditCardScene.ts` (`BRAND`, `LOGO_PATH`) | O cartão mostra "Jeezus BLACK", "JeezusDesign.", "jeezus.ai/black" e o símbolo da Claude, da Anthropic. Herança do demo original. Trocar pela identidade da AssinaVip |
 | Footer de template | `components/layout/Footer.tsx` | Marca "cyber", texto sobre escritório de design de interiores em Portland, links em inglês com `href="#"`. Substituir pelo conteúdo real (institucional, atendimento, redes sociais) |
-| Formato e moeda de preço | `lib/format.ts` e usos | Dois formatos convivem: "$25,35" nos cards e "$1399" (sem vírgula) no carrinho e no produto. Os dois usam "$" numa loja brasileira. Decidir o formato (provavelmente "R$ 13,99") e unificar no `format.ts` |
 | Preço divergente do Netflix | `data/products.ts` | O mesmo produto aparece por 25.35 na vitrine e por 13.99 na página de produto e no carrinho |
 | Página de termos | Link no checkout | `/termos` não existe e dá 404. O aceite dos termos é condição para pagar |
 | Favicon | `src/app/favicon.ico` | Ainda é o ícone padrão do Next.js |
 
 ## 🟡 Conteúdo provisório
 
-- Textos em inglês na interface: "Search" (busca), "Discounts up to -50%" (vitrine), "Shop Now" e texto lorem ipsum (banner promocional), "Code" (placeholder do cupom).
+- Textos em inglês na interface: "Discounts up to -50%" (vitrine), "Shop Now" e texto lorem ipsum (banner promocional).
+- Textos de vantagens e perguntas frequentes (`components/product/PurchaseBenefits.tsx` e `PurchaseFaq.tsx`) foram escritos a partir do fluxo documentado. Confirmar com o cliente.
+- Preço antigo, desconto e estoque só existem no mock da página de produto. Os cards ainda não mostram desconto nem "Esgotado": falta o campo nos dados (`src/data/products.ts`).
+- Contador de itens no ícone do carrinho: depende de estado real de carrinho.
 - Âncora `#avaliacoes` no menu não corresponde a nenhuma seção.
 - Imagens de produtos físicos (iPhone, Galaxy, iPad, AirPods, Apple Watch) e o banner da Intel vieram do Figma de referência. Confirmar se a AssinaVip vai vender esses itens.
 - O Galaxy Z Fold5 está na categoria "Jogos" no mock.

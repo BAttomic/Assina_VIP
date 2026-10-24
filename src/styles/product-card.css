@@ -8,6 +8,7 @@
 .product-name, .product-duration { margin: 0; font-size: 16px; font-weight: 500; line-height: 24px; overflow-wrap: anywhere; }
 .product-duration { min-height: 24px; }
 .product-price { margin: 16px 0 24px; font-size: 24px; font-weight: 600; line-height: 24px; letter-spacing: .03em; }
+.product-delivery { display: inline-flex; align-items: center; gap: 4px; margin: -12px 0 20px; color: var(--success); font-size: 13px; font-weight: 600; line-height: 18px; }
 .buy-button { width: 100%; min-height: 48px; margin-top: auto; padding: 12px 16px; border: 0; border-radius: var(--radius-md); background: var(--ink); color: #fff; font-size: 14px; font-weight: 500; line-height: 24px; transition: opacity var(--ease); }
 .buy-button:hover { opacity: .86; }
 .wishlist { position: absolute; right: 16px; top: 24px; z-index: 2; width: 32px; height: 32px; border: 0; border-radius: 50%; background: transparent; padding: 0; display: grid; place-items: center; color: #8a8a8a; transition: color var(--ease), background var(--ease); }
@@ -30,5 +31,6 @@
   .product-duration { min-height: 19px; }
   .product-price { margin: 10px 0 14px; font-size: 18px; }
   .buy-button { min-height: 40px; padding: 8px; font-size: 13px; }
+  .product-delivery { margin: -8px 0 12px; font-size: 12px; }
   .wishlist { top: 8px; right: 8px; }
 }

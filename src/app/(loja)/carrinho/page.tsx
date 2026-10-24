@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Minus, Plus, ShoppingCart, X } from "lucide-react";
 import { useMemo, useState } from "react";
-import { formatPriceCompact } from "@/lib/format";
+import { formatPrice } from "@/lib/format";
 
 // Carrinho ainda é mock: um único item fixo, só a quantidade e o cupom são interativos.
 const basePrice = 13.99;
@@ -58,7 +58,7 @@ export default function CartPage() {
                 </button>
               </div>
 
-              <strong className="cart-item-price">{formatPriceCompact(total)}</strong>
+              <strong className="cart-item-price">{formatPrice(total)}</strong>
 
               <button type="button" className="remove-item" aria-label="Remover produto">
                 <X size={22} strokeWidth={1.4} />
@@ -74,12 +74,12 @@ export default function CartPage() {
               id="promo-code"
               value={promo}
               onChange={(event) => setPromo(event.target.value)}
-              placeholder="Code"
+              placeholder="Digite seu cupom"
             />
 
             <div className="summary-total">
               <span>Total do Pedido</span>
-              <strong>{formatPriceCompact(total)}</strong>
+              <strong>{formatPrice(total)}</strong>
             </div>
 
             <Link href="/checkout" className="payment-button">

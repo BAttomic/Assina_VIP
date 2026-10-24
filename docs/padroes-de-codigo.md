@@ -43,7 +43,7 @@ O `build` é o mesmo que roda no Dokploy. Se ele falha local, o deploy falha.
 - Arquivos que não são componente (utilitários, cena 3D) usam camelCase: `cardFormat.ts`, `creditCardScene.ts`.
 - **Server Component por padrão.** Coloque `"use client"` só onde há estado, efeito ou handler, e no menor componente possível.
   - Hoje `carrinho/page.tsx` e `checkout/page.tsx` são client inteiras porque guardam estado. Quando os dados virem da API, a página deve voltar a ser server e o estado deve descer para um componente client.
-  - Header, Footer e toda a Home são server.
+  - Header, Footer e toda a Home são server. A única peça client da casca é `ScrollReveal` (animação de entrada), que não renderiza nada.
 - Páginas dentro de `(loja)` renderizam **só o próprio `<main>`**. Header e Footer vêm do `(loja)/layout.tsx`. Não importe Header/Footer numa página.
 - Dados de produto não ficam escritos dentro de componentes. Eles vêm de `src/data/` (hoje mock, depois API).
 - Listas renderizadas com `.map` usam `key` estável (id, label ou título), nunca o índice.
@@ -52,7 +52,7 @@ O `build` é o mesmo que roda no Dokploy. Se ele falha local, o deploy falha.
 
 Toda exibição de preço passa por `src/lib/format.ts`. Não formate preço inline com `toFixed` ou `toLocaleString`.
 
-Hoje existem dois formatos herdados do Figma e eles divergem (ver [pendencias.md](pendencias.md)). Quando o formato for unificado, a mudança acontece só nesse arquivo.
+O formato é único, real brasileiro (`formatPrice(13.99)` resulta em "R$ 13,99"). Desconto percentual também sai de lá (`discountPercent`).
 
 ## Imagens
 
