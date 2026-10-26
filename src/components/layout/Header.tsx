@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Search, ShoppingCart, UserRound, Zap } from "lucide-react";
+import MainNav from "@/components/layout/MainNav";
 
 export default function Header() {
   return (
@@ -19,12 +20,7 @@ export default function Header() {
             <input type="search" aria-label="Pesquisar produtos" placeholder="Buscar produtos" />
           </div>
 
-          <nav className="main-nav" aria-label="Navegação principal">
-            <Link href="/" className="active">Home</Link>
-            <Link href="#avaliacoes">Avaliações</Link>
-            <Link href="#categorias">Categorias</Link>
-            <Link href="#produtos">Produtos</Link>
-          </nav>
+          <MainNav />
 
           <div className="header-actions">
             <Link href="/carrinho" aria-label="Carrinho"><ShoppingCart size={26} strokeWidth={1.5} /></Link>

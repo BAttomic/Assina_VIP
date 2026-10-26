@@ -8,6 +8,7 @@ Tudo abaixo é **front-end com dados mock**. Nenhuma página fala com back-end, 
 | `/produto/[slug]` | `src/app/(loja)/produto/[slug]/page.tsx` | Dinâmica, server | Sempre mostra o Netflix |
 | `/carrinho` | `src/app/(loja)/carrinho/page.tsx` | Estática, client | Item fixo, quantidade funciona |
 | `/checkout` | `src/app/(loja)/checkout/page.tsx` | Estática, client | Formulário e cartão 3D funcionam, pagamento não |
+| `/avaliacoes` | `src/app/(loja)/avaliacoes/page.tsx` | Estática, server | Sempre no estado vazio: ainda não há fonte de avaliações |
 
 Todas as rotas da loja compartilham Header e Footer pelo `src/app/(loja)/layout.tsx`.
 
@@ -30,7 +31,7 @@ Hoje os passos 1 a 3 existem visualmente. Os passos 4 a 6 não existem.
 |---|---|
 | Marca "AssinaVip" | Link para `/` |
 | Busca | Campo sem ação, placeholder em inglês ("Search") |
-| Navegação | Home (`/`), Avaliações (`#avaliacoes`, âncora que não existe), Categorias (`#categorias`), Produtos (`#produtos`). "Home" fica sempre marcado como ativo |
+| Navegação | Home (`/`), Avaliações (`/avaliacoes`), Categorias (`/#categorias`) e Produtos (`/#produtos`). O item da página atual fica marcado (`components/layout/MainNav.tsx`) |
 | Carrinho | Link para `/carrinho` |
 | Conta | Botão sem ação |
 
@@ -38,7 +39,7 @@ Abaixo de 900px a navegação some e fica só marca, busca e ações.
 
 ## Footer (todas as páginas)
 
-O conteúdo é **placeholder de template**, em inglês, sem relação com a AssinaVip: marca "cyber", texto sobre um escritório de design de interiores em Portland, e links com `href="#"`. Precisa ser substituído (ver [pendencias.md](pendencias.md)).
+Marca, frase sobre a loja e direitos reservados, mais três colunas: **Links rápidos** (Início, Produtos, Categorias, Avaliações, Carrinho), **Ajuda e políticas** e **Compra** (Pix, cartão, entrega automática, compra sem cadastro). Suporte, Termos de uso, Privacidade e Reembolso aparecem como "em breve", sem link, até existirem. O canal de suporte é a constante `SUPPORT_URL` em `components/layout/Footer.tsx` (hoje `null`). Sem redes sociais por enquanto.
 
 ## Home (`/`)
 
@@ -68,6 +69,14 @@ O card de produto só vira link quando o produto tem `slug` em `src/data/product
 - "Remover" não faz nada.
 - "Pagamento" leva a `/checkout`.
 - Nada é persistido. Recarregar a página volta para quantidade 1.
+
+## Avaliações (`/avaliacoes`)
+
+- Avaliações sobre a loja e as compras (não por produto).
+- **Sem dados.** A página declara `const reviews: Review[] = []` e mostra o estado vazio (`ReviewsEmpty`): título, explicação, botão "Ver produtos" e as garantias da compra. Não preencher com avaliações de exemplo.
+- Quando houver API, buscar as avaliações no próprio `page.tsx` (Server Component) e passar para `ReviewsView`, que já tem: nota média, distribuição por estrelas (clicável, filtra a lista), filtro por nota, busca, ordenação (recentes, maior e menor nota) e "Mostrar mais" de 10 em 10.
+- O formato esperado está em `components/reviews/types.ts` e é **provisório**: alinhar com o back-end.
+- `loading.tsx` (esqueleto) e `error.tsx` (mensagem e "Tentar de novo", via `retry`) já existem para quando a busca for real.
 
 ## Checkout (`/checkout`)
 

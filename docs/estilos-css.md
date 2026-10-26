@@ -17,6 +17,7 @@ Todo o CSS fica em `src/styles/`. O layout raiz importa **um único arquivo**, `
 | 6 | `product-page.css` | `/produto/[slug]` |
 | 7 | `cart.css` | `/carrinho` |
 | 8 | `checkout.css` | `/checkout` |
+| 9 | `reviews.css` | `/avaliacoes` |
 
 **A ordem importa.** Peças compartilhadas vêm antes das páginas, porque as páginas às vezes as especializam (ex.: `.similar-grid .product-card`).
 
@@ -33,7 +34,7 @@ Todo o CSS fica em `src/styles/`. O layout raiz importa **um único arquivo**, `
 - Utilitário só quando muito pontual: `.span-2` no grid de campos do cartão.
 - Seletor de elemento só **dentro** de um bloco (`.order-summary input`). Seletor de elemento solto fica só em `base.css`.
 - Sem `!important`.
-- Estilo inline (`style={{…}}`) só no fallback do cartão 3D sem WebGL.
+- Estilo inline (`style={{…}}`) só no fallback do cartão 3D sem WebGL e em medidas que vêm dos dados (largura das barras de distribuição em `ReviewsSummary`).
 
 ## Tokens
 

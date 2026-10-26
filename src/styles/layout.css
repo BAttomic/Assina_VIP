@@ -23,14 +23,19 @@
 
 /* Footer */
 .site-footer { background: var(--ink); color: #fff; }
-.footer-grid { width: min(calc(100% - var(--gutter)), var(--max)); margin: 0 auto; padding: 104px 0; display: grid; grid-template-columns: minmax(0, 1fr) 295px 295px; column-gap: 32px; }
-.footer-brand { display: flex; flex-direction: column; }
-.footer-brand h3 { margin: 0 0 24px; font-size: 24px; font-weight: 600; line-height: 1; letter-spacing: -.02em; }
-.footer-brand p { max-width: 384px; margin: 0; color: #cfcfcf; font-size: 14px; font-weight: 500; line-height: 1.705; }
-.footer-grid h4 { margin: 0 0 8px; font-size: 16px; font-weight: 600; line-height: 16px; }
-.footer-grid a { display: block; width: fit-content; color: #cfcfcf; font-size: 14px; line-height: 32px; margin-top: 8px; transition: color var(--ease); }
-.footer-grid a:hover { color: #fff; }
-.socials { display: flex; gap: 36px; margin-top: auto; padding-top: 113px; color: #fff; }
+.footer-grid { width: min(calc(100% - var(--gutter)), var(--max)); margin: 0 auto; padding: 80px 0 72px; display: grid; grid-template-columns: minmax(0, 1.4fr) repeat(3, minmax(0, 1fr)); column-gap: 48px; }
+.footer-brand { display: flex; flex-direction: column; align-items: flex-start; }
+.footer-logo { font-size: 26px; font-weight: 700; line-height: 1; letter-spacing: -.02em; color: #fff; }
+.footer-brand p { max-width: 340px; margin: 20px 0 0; color: #cfcfcf; font-size: 15px; line-height: 1.6; }
+.footer-brand small { margin-top: 28px; color: #9a9a9a; font-size: 13px; line-height: 1.5; }
+.footer-column h2 { margin: 0 0 16px; font-size: 17px; font-weight: 600; line-height: 24px; color: #fff; }
+.footer-column ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 12px; }
+.footer-column li { color: #cfcfcf; font-size: 15px; line-height: 1.45; }
+.footer-column a { display: inline-block; color: #cfcfcf; transition: color var(--ease); }
+.footer-column a:hover { color: #fff; }
+.footer-column a:focus-visible { outline-color: #fff; }
+.footer-soon { color: #8f8f8f; }
+.footer-soon span { font-size: 13px; }
 
 /* Entrada ao rolar (components/layout/ScrollReveal.tsx). As classes só existem enquanto o script anima;
    sem JavaScript ou com prefers-reduced-motion nada é ocultado. O "html" eleva a especificidade
@@ -53,9 +58,8 @@ html .reveal.is-visible { opacity: 1; transform: none; transition: opacity .6s c
   .header-inner { gap: 16px; }
   .main-nav { display: none; }
   .search-box { flex: 1 1 auto; max-width: 420px; height: 48px; }
-  .footer-grid { grid-template-columns: 1fr 1fr; row-gap: 48px; padding: 72px 0; }
+  .footer-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 40px; padding: 64px 0; }
   .footer-brand { grid-column: 1 / -1; }
-  .socials { padding-top: 40px; }
 }
 
 @media (max-width: 560px) {
@@ -67,6 +71,5 @@ html .reveal.is-visible { opacity: 1; transform: none; transition: opacity .6s c
   .header-actions { gap: 4px; }
   .header-actions a, .header-actions button { width: 40px; height: 40px; }
   .header-actions svg { width: 22px; height: 22px; }
-  .footer-grid { grid-template-columns: 1fr; row-gap: 36px; padding: 56px 0; }
-  .socials { padding-top: 32px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; row-gap: 32px; column-gap: 24px; padding: 48px 0; }
 }
