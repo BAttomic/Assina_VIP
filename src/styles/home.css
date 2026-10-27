@@ -32,8 +32,8 @@
 .section-arrows { display: flex; gap: 16px; }
 .section-arrows button { width: 32px; height: 32px; border: 0; border-radius: 50%; background: transparent; padding: 0; display: grid; place-items: center; color: var(--text); transition: background var(--ease); }
 .section-arrows button:hover { background: rgba(0, 0, 0, .06); }
-.category-list { display: flex; gap: 32px; margin-top: 32px; }
-.category-card { flex: 0 0 160px; height: 128px; padding: 16px 12px; background: var(--surface-3); border: 0; border-radius: 15px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; color: var(--text); transition: transform var(--ease), background var(--ease); }
+.category-list { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 32px; margin-top: 32px; }
+.category-card { min-width: 0; height: 128px; padding: 16px 12px; background: var(--surface-3); border: 0; border-radius: 15px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; color: var(--text); transition: transform var(--ease), background var(--ease); }
 .category-card:hover { transform: translateY(-2px); background: #e4e4e4; }
 .category-card img { flex: 0 0 auto; }
 .category-card span { font-size: 16px; font-weight: 500; line-height: 24px; text-align: center; }
@@ -57,12 +57,16 @@
 .promo-overlay button { padding: 16px 56px; border: 1px solid #fff; border-radius: var(--radius-sm); background: transparent; color: #fff; font-size: 16px; font-weight: 500; line-height: 24px; transition: background var(--ease), color var(--ease); }
 .promo-overlay button:hover { background: #fff; color: var(--text); }
 
+@media (max-width: 1180px) {
+  .category-list { gap: 16px; }
+}
+
 @media (max-width: 900px) {
   .hero-top { grid-template-columns: 1fr; }
   .hero-card-side { display: none; }
-  .category-list { gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: calc(var(--gutter) / 2); padding-bottom: 8px; margin-inline: calc(var(--gutter) / -2); padding-inline: calc(var(--gutter) / 2); scrollbar-width: none; }
-  .category-list::-webkit-scrollbar { display: none; }
-  .category-card { flex-basis: 144px; height: 120px; scroll-snap-align: start; }
+  .category-list { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .section-arrows { display: none; }
+  .category-card { height: 120px; }
   .promo-banner { height: 340px; }
   .promo-overlay { padding: 0 24px; }
   .promo-overlay h2 { font-size: 52px; line-height: 56px; }
@@ -80,10 +84,11 @@
   .hero-dots span { width: 6px; height: 6px; }
   .categories-section { margin-top: 8px; }
   .section-heading h2 { font-size: 20px; }
-  .category-card { flex-basis: 128px; height: 112px; }
+  .category-list { gap: 10px; margin-top: 20px; }
+  .category-card { height: auto; min-height: 108px; padding: 12px 6px; }
   .category-card img { width: 40px; height: 40px; }
   .category-card span { font-size: 14px; line-height: 20px; }
-  .product-tabs { gap: 20px; overflow-x: auto; margin-bottom: 20px; scrollbar-width: none; padding-bottom: 2px; }
+  .product-tabs { flex-wrap: wrap; gap: 4px 20px; margin-bottom: 20px; }
   .product-tabs button { font-size: 16px; }
   .discount-heading { font-size: 20px; margin: 48px 0 20px; }
   .promo-banner { height: 300px; }

@@ -19,7 +19,6 @@ Levantadas na integração do front-end em 16/out/2026. Remova o item quando res
 - Preço antigo, desconto e estoque só existem no mock da página de produto. Os cards ainda não mostram desconto nem "Esgotado": falta o campo nos dados (`src/data/products.ts`).
 - Contador de itens no ícone do carrinho: depende de estado real de carrinho.
 - Imagens de produtos físicos (iPhone, Galaxy, iPad, AirPods, Apple Watch) e o banner da Intel vieram do Figma de referência. Confirmar se a AssinaVip vai vender esses itens.
-- O Galaxy Z Fold5 está na categoria "Jogos" no mock.
 - Metadata mínima: só título e descrição. Faltam Open Graph e ícones.
 
 ## 🟡 Funcionalidade (tudo é mock hoje)
@@ -29,7 +28,7 @@ Levantadas na integração do front-end em 16/out/2026. Remova o item quando res
 - **Carrinho sem estado real:** item fixo, "Remover" sem ação, cupom não aplicado, nada persiste entre páginas.
 - **Avaliações sem fonte de dados:** `/avaliacoes` fica no estado vazio até existir API. Definir com o back-end o formato (rascunho em `components/reviews/types.ts`), quem pode avaliar e se há moderação.
 - **Checkout sem pagamento:** resumo fixo, contato sem validação, Pix sem QR code, Cripto sem integração, Pagar sem ação.
-- Botões sem ação: busca, conta, setas e dots do Hero, cards e setas de categoria, abas da vitrine, favoritar, "Comprar Agora" dos cards, "Ver Mais", "Shop Now".
+- Botões sem ação: conta, setas e dots do Hero, setas de categoria, abas da vitrine, favoritar, "Comprar Agora" dos cards, "Ver Mais", "Shop Now".
 
 ## 🔵 Técnico
 

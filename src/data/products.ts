@@ -11,6 +11,7 @@ export type Product = {
   duration: string;
   price: number;
   image: string;
+  /** Slug da categoria em src/data/categories.ts (ex.: "assinaturas"). */
   category: string;
   /** Com slug, o card vira link para /produto/[slug]. Hoje só o Netflix tem página. */
   slug?: string;
@@ -30,22 +31,25 @@ export type ProductDetail = {
 };
 
 export const subscriptionProducts: Product[] = [
-  { id: "spotify-90", name: "Spotify Premium", duration: "90 Dias", price: 9, image: "/assets/spotify.jpg", category: "Assinaturas", featured: true },
-  { id: "netflix-30", name: "Netflix Premium 4K Ultra HD", duration: "30 Dias", price: 25.35, image: "/assets/netflix.jpg", category: "Assinaturas", slug: "netflix-premium" },
-  { id: "discord-30", name: "Discord Nitro", duration: "30 Dias", price: 3.99, image: "/assets/discord.jpg", category: "Assinaturas" },
-  { id: "capcut-30", name: "Capcut Pro", duration: "30 Dias", price: 5.49, image: "/assets/capcut.jpg", category: "Assinaturas" },
-  { id: "canva-30", name: "Canva Pro", duration: "30 Dias", price: 3.69, image: "/assets/canva.jpg", category: "Assinaturas" },
-  { id: "galaxy-fold", name: "Galaxy Z Fold5 Unlocked", duration: "256GB | Phantom Black", price: 1799, image: "/assets/galaxy-fold.jpg", category: "Jogos" },
-  { id: "galaxy-buds", name: "Galaxy Buds FE", duration: "Graphite", price: 99.99, image: "/assets/galaxy-buds.jpg", category: "Produtos" },
-  { id: "ipad-9", name: "Apple iPad 9 10.2\" 64GB Wi-Fi", duration: "Silver (MK2L3) 2021", price: 398, image: "/assets/ipad.jpg", category: "Produtos" }
+  { id: "spotify-90", name: "Spotify Premium", duration: "90 Dias", price: 9, image: "/assets/spotify.jpg", category: "assinaturas", featured: true },
+  { id: "netflix-30", name: "Netflix Premium 4K Ultra HD", duration: "30 Dias", price: 25.35, image: "/assets/netflix.jpg", category: "assinaturas", slug: "netflix-premium" },
+  { id: "discord-30", name: "Discord Nitro", duration: "30 Dias", price: 3.99, image: "/assets/discord.jpg", category: "assinaturas" },
+  { id: "capcut-30", name: "Capcut Pro", duration: "30 Dias", price: 5.49, image: "/assets/capcut.jpg", category: "assinaturas" },
+  { id: "canva-30", name: "Canva Pro", duration: "30 Dias", price: 3.69, image: "/assets/canva.jpg", category: "assinaturas" },
+  { id: "galaxy-fold", name: "Galaxy Z Fold5 Unlocked", duration: "256GB | Phantom Black", price: 1799, image: "/assets/galaxy-fold.jpg", category: "eletronicos" },
+  { id: "galaxy-buds", name: "Galaxy Buds FE", duration: "Graphite", price: 99.99, image: "/assets/galaxy-buds.jpg", category: "eletronicos" },
+  { id: "ipad-9", name: "Apple iPad 9 10.2\" 64GB Wi-Fi", duration: "Silver (MK2L3) 2021", price: 398, image: "/assets/ipad.jpg", category: "eletronicos" }
 ];
 
 export const discountedProducts: Product[] = [
-  { id: "iphone-14-512", name: "Apple iPhone 14 Pro 512GB Gold", duration: "(MQ233)", price: 1437, image: "/assets/iphone-gold.jpg", category: "Ofertas" },
-  { id: "airpods-max", name: "AirPods Max Silver", duration: "Starlight Aluminium", price: 549, image: "/assets/airpods-max.jpg", category: "Ofertas" },
-  { id: "watch-9", name: "Apple Watch Series 9 GPS", duration: "41mm Starlight Aluminium", price: 399, image: "/assets/apple-watch.jpg", category: "Ofertas" },
-  { id: "iphone-14-1tb", name: "Apple iPhone 14 Pro 1TB Gold", duration: "(MQ2V3)", price: 1499, image: "/assets/iphone-blue.jpg", category: "Ofertas" }
+  { id: "iphone-14-512", name: "Apple iPhone 14 Pro 512GB Gold", duration: "(MQ233)", price: 1437, image: "/assets/iphone-gold.jpg", category: "eletronicos" },
+  { id: "airpods-max", name: "AirPods Max Silver", duration: "Starlight Aluminium", price: 549, image: "/assets/airpods-max.jpg", category: "eletronicos" },
+  { id: "watch-9", name: "Apple Watch Series 9 GPS", duration: "41mm Starlight Aluminium", price: 399, image: "/assets/apple-watch.jpg", category: "eletronicos" },
+  { id: "iphone-14-1tb", name: "Apple iPhone 14 Pro 1TB Gold", duration: "(MQ2V3)", price: 1499, image: "/assets/iphone-blue.jpg", category: "eletronicos" }
 ];
+
+/** Catálogo completo (vitrine + ofertas), na ordem padrão da loja. Usado em /produtos e nas categorias. */
+export const allProducts: Product[] = [...subscriptionProducts, ...discountedProducts];
 
 /** Detalhe exibido em /produto/[slug]. Por enquanto é sempre o Netflix, qualquer que seja o slug. */
 export const productDetail: ProductDetail = {

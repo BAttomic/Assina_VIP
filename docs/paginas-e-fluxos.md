@@ -8,6 +8,9 @@ Tudo abaixo é **front-end com dados mock**. Nenhuma página fala com back-end, 
 | `/produto/[slug]` | `src/app/(loja)/produto/[slug]/page.tsx` | Dinâmica, server | Sempre mostra o Netflix |
 | `/carrinho` | `src/app/(loja)/carrinho/page.tsx` | Estática, client | Item fixo, quantidade funciona |
 | `/checkout` | `src/app/(loja)/checkout/page.tsx` | Estática, client | Formulário e cartão 3D funcionam, pagamento não |
+| `/produtos` | `src/app/(loja)/produtos/page.tsx` | Estática + catálogo client (`useSearchParams` em `<Suspense>`) | Filtros, busca, ordenação e paginação pela URL |
+| `/categorias` | `src/app/(loja)/categorias/page.tsx` | Estática, server + busca client | Grade de categorias com busca |
+| `/categorias/[slug]` | `src/app/(loja)/categorias/[slug]/page.tsx` | Estática (gerada no build), server | Produtos da categoria; slug desconhecido dá 404 |
 | `/avaliacoes` | `src/app/(loja)/avaliacoes/page.tsx` | Estática, server | Sempre no estado vazio: ainda não há fonte de avaliações |
 
 Todas as rotas da loja compartilham Header e Footer pelo `src/app/(loja)/layout.tsx`.
@@ -30,12 +33,12 @@ Hoje os passos 1 a 3 existem visualmente. Os passos 4 a 6 não existem.
 | Elemento | Comportamento atual |
 |---|---|
 | Marca "AssinaVip" | Link para `/` |
-| Busca | Campo sem ação, placeholder em inglês ("Search") |
-| Navegação | Home (`/`), Avaliações (`/avaliacoes`), Categorias (`/#categorias`) e Produtos (`/#produtos`). O item da página atual fica marcado (`components/layout/MainNav.tsx`) |
+| Busca | Formulário (`next/form`) que leva a `/produtos?q=<termo>`. Funciona sem JavaScript |
+| Navegação | Home (`/`), Avaliações (`/avaliacoes`), Categorias (`/categorias`) e Produtos (`/produtos`). O item da página atual fica marcado (`components/layout/MainNav.tsx`) |
 | Carrinho | Link para `/carrinho` |
 | Conta | Botão sem ação |
 
-Abaixo de 900px a navegação some e fica só marca, busca e ações.
+Abaixo de 900px a navegação dá lugar a um botão de menu (`components/layout/MobileMenu.tsx`) que abre um painel com os mesmos links; fecha com Esc, ao tocar fora ou ao trocar de página. Os links ficam em `components/layout/navLinks.ts`, compartilhados com o menu do desktop. Abaixo de 560px o header tem duas linhas: marca e ícones em cima, busca na largura toda embaixo.
 
 ## Footer (todas as páginas)
 
@@ -69,6 +72,24 @@ O card de produto só vira link quando o produto tem `slug` em `src/data/product
 - "Remover" não faz nada.
 - "Pagamento" leva a `/checkout`.
 - Nada é persistido. Recarregar a página volta para quantidade 1.
+
+## Produtos (`/produtos`)
+
+- Catálogo completo (`allProducts` em `src/data/products.ts`) com filtros na lateral: categoria (com contagem) e faixa de preço (mínimo e máximo, "Aplicar preço"; faixa invertida é corrigida sozinha).
+- Barra com busca no nome e na variante (ignora acentos) e "Ordenar por": Padrão, Menor preço, Maior preço. "Mais recentes" e "Maior desconto" ficam de fora porque os produtos não têm data nem preço antigo.
+- O estado vive na URL: `?categoria=assinaturas&q=netflix&ordem=menor-preco&min=10&max=50&pagina=2`. Lógica pura em `components/catalog/catalogQuery.ts`.
+- Paginação de 12 em 12; com 12 produtos no mock, ainda não aparece.
+- Sem resultado: "Nenhum produto encontrado" e "Limpar filtros". Abaixo de 900px os filtros abrem pelo botão "Filtros".
+- Antes de o catálogo carregar (ou sem JavaScript), a página mostra a grade completa.
+
+## Categorias (`/categorias` e `/categorias/[slug]`)
+
+- As categorias vêm de `src/data/categories.ts` (mock), a mesma lista usada na seção "Pesquise por Categoria" da Home, cujos cards agora levam a `/categorias/<slug>`.
+- `/categorias`: título, busca por nome (ignora acentos), contagem e grade de categorias com o número de produtos de cada uma. Busca sem resultado mostra "Nenhuma categoria encontrada" e "Ver todas".
+- `/categorias/[slug]`: breadcrumb, título, descrição e a grade de produtos (`ProductCard`). Sem produtos, mostra "Ainda não há produtos nesta categoria" e o link para todas as categorias.
+- `generateStaticParams` gera as 6 páginas no build e `dynamicParams = false` faz qualquer outro slug dar 404.
+- "Os Mais Desejados" é uma curadoria: reúne os produtos com `featured: true` (hoje só o Spotify). As outras usam `Product.category`, que guarda o slug da categoria.
+- Hoje Xbox e Microsoft Store, Twitch Drops e Jogos não têm produtos nos dados de exemplo.
 
 ## Avaliações (`/avaliacoes`)
 

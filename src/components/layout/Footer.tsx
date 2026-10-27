@@ -13,8 +13,8 @@ type FooterLink = { label: string; href: string | null };
 
 const QUICK_LINKS: FooterLink[] = [
   { label: "Início", href: "/" },
-  { label: "Produtos", href: "/#produtos" },
-  { label: "Categorias", href: "/#categorias" },
+  { label: "Produtos", href: "/produtos" },
+  { label: "Categorias", href: "/categorias" },
   { label: "Avaliações", href: "/avaliacoes" },
   { label: "Carrinho", href: "/carrinho" },
 ];

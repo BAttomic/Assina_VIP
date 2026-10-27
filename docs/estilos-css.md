@@ -18,6 +18,8 @@ Todo o CSS fica em `src/styles/`. O layout raiz importa **um único arquivo**, `
 | 7 | `cart.css` | `/carrinho` |
 | 8 | `checkout.css` | `/checkout` |
 | 9 | `reviews.css` | `/avaliacoes` |
+| 10 | `categories.css` | `/categorias` e `/categorias/[slug]` |
+| 11 | `catalog.css` | `/produtos` |
 
 **A ordem importa.** Peças compartilhadas vêm antes das páginas, porque as páginas às vezes as especializam (ex.: `.similar-grid .product-card`).
 
@@ -73,6 +75,7 @@ A interface é **monocromática** (preto, branco e cinzas), com um único acento
 
 - Contêiner padrão: `width: min(calc(100% - var(--gutter)), var(--max)); margin: 0 auto;`
 - Os banners do Hero respeitam o contêiner padrão (`--max`), alinhados com as demais seções: dois lado a lado no desktop, um só abaixo de 900px. Só o banner promocional ocupa a largura toda da tela.
+- Nada pode ficar cortado na borda da tela no celular: listas que não cabem quebram em grade ou em várias linhas (categorias da Home em 3 colunas, abas da vitrine com quebra de linha), em vez de rolar para o lado.
 - Grades com `display: grid` e `minmax(0, 1fr)`. A vitrine tem 4 colunas, 3 abaixo de 1100px e 2 abaixo de 900px. Espaço entre cards: 16px.
 - Card de produto: imagem de 160px, nome 16px, preço 24px semibold, botão de largura total com 48px de altura.
 
@@ -83,8 +86,9 @@ Desktop-first, sempre com `max-width`. As media queries ficam **no fim** do arqu
 | Breakpoint | Onde |
 |---|---|
 | 1200px | Header (navegação mais compacta) |
-| 1100px | Grade de produtos (3 colunas) |
-| 1000px | Checkout |
+| 1180px | Home: grade de categorias com vãos menores |
+| 1100px | Grade de produtos (3 colunas); em `/produtos`, 2 colunas ao lado dos filtros |
+| 1000px | Checkout, grade de `/categorias` (2 colunas) |
 | 900px | Header, Footer, Home, grade de produtos, página de produto, carrinho, checkout |
 | 600px | Carrinho |
 | 560px | Header, Footer, Home, grade de produtos, página de produto, checkout |

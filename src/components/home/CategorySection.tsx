@@ -1,14 +1,7 @@
 import Image from "next/image";
+import Link from "next/link";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-
-// Ícones exportados do Figma (public/assets/icons). O do Xbox foi redesenhado a partir da geometria do Figma.
-const categories = [
-  { label: "Os Mais Desejados", icon: "/assets/icons/category-most-wanted.svg" },
-  { label: "Xbox e Microsoft Store", icon: "/assets/icons/category-xbox.svg" },
-  { label: "Twitch Drops", icon: "/assets/icons/category-twitch.svg" },
-  { label: "Assinaturas", icon: "/assets/icons/category-subscriptions.svg" },
-  { label: "Jogos", icon: "/assets/icons/category-games.svg" },
-];
+import { categories } from "@/data/categories";
 
 export default function CategorySection() {
   return (
@@ -22,11 +15,11 @@ export default function CategorySection() {
           </div>
         </div>
         <div className="category-list">
-          {categories.map(({ label, icon }) => (
-            <button type="button" className="category-card" key={label}>
+          {categories.map(({ slug, name, icon }) => (
+            <Link href={`/categorias/${slug}`} className="category-card" key={slug}>
               <Image src={icon} alt="" width={48} height={48} />
-              <span>{label}</span>
-            </button>
+              <span>{name}</span>
+            </Link>
           ))}
         </div>
       </div>

@@ -18,8 +18,19 @@
 .main-nav a:hover { color: rgba(0, 0, 0, .7); }
 .main-nav a.active { color: var(--text); }
 .header-actions { display: flex; align-items: center; gap: 24px; }
-.header-actions a, .header-actions button { width: 32px; height: 32px; border: 0; border-radius: 6px; background: transparent; padding: 0; display: grid; place-items: center; color: var(--text); transition: background var(--ease); }
-.header-actions a:hover, .header-actions button:hover { background: var(--surface-2); }
+.header-actions > a, .header-actions > button, .mobile-menu-toggle { width: 32px; height: 32px; border: 0; border-radius: 6px; background: transparent; padding: 0; display: grid; place-items: center; color: var(--text); transition: background var(--ease); }
+.header-actions > a:hover, .header-actions > button:hover, .mobile-menu-toggle:hover { background: var(--surface-2); }
+
+/* Menu do celular (components/layout/MobileMenu.tsx): escondido no desktop, onde a .main-nav aparece.
+   O painel se posiciona pelo .site-header (position: relative) e ocupa a largura toda abaixo dele. */
+.mobile-menu { display: none; }
+.mobile-menu-panel { position: absolute; top: 100%; left: 0; right: 0; z-index: 20; background: var(--bg); box-shadow: 0 12px 24px rgba(0, 0, 0, .08); }
+.mobile-menu-panel[hidden] { display: none; }
+.mobile-menu-panel ul { width: min(calc(100% - var(--gutter)), var(--max)); margin: 0 auto; padding: 8px 0 16px; list-style: none; }
+.mobile-menu-panel a { display: flex; align-items: center; min-height: 52px; padding: 0 4px; border-bottom: .5px solid var(--divider); color: var(--muted-2); font-size: 18px; font-weight: 500; }
+.mobile-menu-panel li:last-child a { border-bottom: 0; }
+.mobile-menu-panel a:hover, .mobile-menu-panel a.active { color: var(--text); }
+.mobile-menu-panel a.active { font-weight: 600; }
 
 /* Footer */
 .site-footer { background: var(--ink); color: #fff; }
@@ -57,19 +68,23 @@ html .reveal.is-visible { opacity: 1; transform: none; transition: opacity .6s c
   .site-header { height: 72px; }
   .header-inner { gap: 16px; }
   .main-nav { display: none; }
+  .mobile-menu { display: block; }
   .search-box { flex: 1 1 auto; max-width: 420px; height: 48px; }
   .footer-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 40px; padding: 64px 0; }
   .footer-brand { grid-column: 1 / -1; }
 }
 
 @media (max-width: 560px) {
-  .site-header { height: 64px; }
-  .header-inner { gap: 12px; }
-  .brand { font-size: 16px; }
-  .search-box { height: 40px; padding: 0 12px; }
+  /* Duas linhas: marca e ícones em cima, busca na largura toda embaixo */
+  .site-header { height: auto; padding: 8px 0 12px; }
+  .header-inner { display: grid; grid-template-columns: 1fr auto; grid-template-areas: "brand actions" "search search"; gap: 8px 12px; }
+  .brand { grid-area: brand; font-size: 18px; }
+  .header-actions { grid-area: actions; }
+  .search-box { grid-area: search; max-width: none; height: 44px; padding: 0 12px; }
+  .search-box input { font-size: 16px; }
   .search-box svg { width: 18px; height: 18px; }
   .header-actions { gap: 4px; }
-  .header-actions a, .header-actions button { width: 40px; height: 40px; }
-  .header-actions svg { width: 22px; height: 22px; }
+  .header-actions > a, .header-actions > button, .mobile-menu-toggle { width: 40px; height: 40px; }
+  .header-actions > a svg, .header-actions > button svg, .mobile-menu-toggle svg { width: 22px; height: 22px; }
   .footer-grid { grid-template-columns: 1fr 1fr; row-gap: 32px; column-gap: 24px; padding: 48px 0; }
 }

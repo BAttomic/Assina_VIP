@@ -10,16 +10,24 @@ Assina_VIP/
 │   │       ├── layout.tsx           # Casca da loja: Header + página + Footer
 │   │       ├── page.tsx             # /
 │   │       ├── produto/[slug]/page.tsx   # /produto/:slug
+│       ├── produtos/page.tsx    # /produtos
+│       ├── categorias/page.tsx  # /categorias
+│       ├── categorias/[slug]/page.tsx # /categorias/:slug
+│       ├── avaliacoes/          # /avaliacoes (page, loading, error)
 │   │       ├── carrinho/page.tsx    # /carrinho
 │   │       └── checkout/page.tsx    # /checkout
 │   ├── components/                  # Componentes agrupados por área
 │   │   ├── layout/                  # Header, Footer
 │   │   ├── home/                    # Hero, CategorySection, ProductSection, PromoBanner
-│   │   ├── product/                 # ProductCard (usado na Home e na página de produto)
+│   │   ├── product/                 # ProductCard, PurchaseBenefits, PurchaseFaq
+│   │   ├── catalog/                 # ProductCatalog e catalogQuery (filtros de /produtos)
+│   │   ├── categories/              # CategoryBrowser (busca e grade de /categorias)
+│   │   ├── reviews/                 # Tela de Avaliações
 │   │   └── checkout/                # CreditCard3D, creditCardScene, PaymentSummary,
 │   │                                # AlternativePayment, cardFormat
 │   ├── data/
-│   │   └── products.ts              # Tipos de produto + dados MOCK do catálogo
+│   │   ├── products.ts              # Tipos de produto + dados MOCK do catálogo
+│   │   └── categories.ts            # Categorias (MOCK) e helpers getCategory / productsInCategory
 │   ├── lib/
 │   │   └── format.ts                # Utilitários puros usados por várias áreas (preço)
 │   └── styles/                      # Todo o CSS (ver estilos-css.md)

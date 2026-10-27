@@ -22,7 +22,7 @@ export default function ProductCard({ product, wishlist = false }: Props) {
         <p className="product-duration">{product.duration}</p>
         <strong className="product-price">{formatPrice(product.price)}</strong>
         {/* Só assinaturas têm entrega automática; produtos físicos (iPhone, Galaxy...) não. */}
-        {product.category === "Assinaturas" && (
+        {product.category === "assinaturas" && (
           <span className="product-delivery"><Zap size={14} strokeWidth={2} aria-hidden="true" />Entrega automática</span>
         )}
         <button type="button" className="buy-button">Comprar Agora</button>

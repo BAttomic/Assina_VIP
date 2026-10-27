@@ -1,6 +1,8 @@
+import Form from "next/form";
 import Link from "next/link";
 import { Search, ShoppingCart, UserRound, Zap } from "lucide-react";
 import MainNav from "@/components/layout/MainNav";
+import MobileMenu from "@/components/layout/MobileMenu";
 
 export default function Header() {
   return (
@@ -15,16 +17,18 @@ export default function Header() {
             AssinaVip
           </Link>
 
-          <div className="search-box">
+          {/* Envia para /produtos?q=...; funciona também sem JavaScript (formulário GET comum). */}
+          <Form action="/produtos" role="search" className="search-box">
             <Search size={22} strokeWidth={1.5} aria-hidden="true" />
-            <input type="search" aria-label="Pesquisar produtos" placeholder="Buscar produtos" />
-          </div>
+            <input type="search" name="q" aria-label="Pesquisar produtos" placeholder="Buscar produtos" />
+          </Form>
 
           <MainNav />
 
           <div className="header-actions">
             <Link href="/carrinho" aria-label="Carrinho"><ShoppingCart size={26} strokeWidth={1.5} /></Link>
             <button type="button" aria-label="Conta"><UserRound size={26} strokeWidth={1.5} /></button>
+            <MobileMenu />
           </div>
         </div>
       </header>
